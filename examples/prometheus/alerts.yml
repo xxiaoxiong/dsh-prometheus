@@ -1,0 +1,70 @@
+groups:
+  - name: dsh-prometheus
+    rules:
+      - alert: DshMetricsTargetDown
+        expr: up{job="deepseek-harness"} == 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: DeepSeek Harness metrics target is down
+          description: Prometheus has failed to scrape the DSH target for two minutes.
+
+      - alert: DshAgentTurnFailureRatioHigh
+        expr: |
+          (
+            sum(rate(dsh_agent_turns_total{status=~"error|blocked|aborted"}[10m]))
+            /
+            clamp_min(sum(rate(dsh_agent_turns_total[10m])), 0.000001)
+          ) > 0.10
+          and sum(increase(dsh_agent_turns_total[10m])) >= 10
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: DSH agent turn failure ratio is high
+          description: More than 10% of turns failed over a meaningful ten-minute sample.
+
+      - alert: DshLlmFailureRatioHigh
+        expr: |
+          (
+            sum(rate(dsh_llm_requests_total{status=~"error|aborted|thrown|incomplete"}[10m]))
+            /
+            clamp_min(sum(rate(dsh_llm_requests_total[10m])), 0.000001)
+          ) > 0.10
+          and sum(increase(dsh_llm_requests_total[10m])) >= 10
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: DSH LLM failure ratio is high
+          description: More than 10% of observed LLM attempts failed or ended incompletely.
+
+      - alert: DshAgentTurnP95Slow
+        expr: |
+          histogram_quantile(
+            0.95,
+            sum by (le) (rate(dsh_agent_turn_duration_seconds_bucket[15m]))
+          ) > 120
+        for: 15m
+        labels:
+          severity: warning
+        annotations:
+          summary: DSH P95 turn duration exceeds two minutes
+          description: The fifteen-minute P95 agent turn duration is above 120 seconds.
+
+      - alert: DshJobFailuresDetected
+        expr: sum(increase(dsh_jobs_failed_total[15m])) > 0
+        labels:
+          severity: warning
+        annotations:
+          summary: DSH background jobs failed
+          description: At least one background job failed in the last fifteen minutes.
+
+      - alert: DshMetricLabelOverflow
+        expr: sum(increase(dsh_metrics_label_overflow_total[15m])) > 0
+        labels:
+          severity: info
+        annotations:
+          summary: DSH metric labels were collapsed
+          description: One or more dynamic label values were mapped to __other__; review naming or cardinality limits.

@@ -1,0 +1,12 @@
+apiVersion: 1
+
+providers:
+  - name: dsh-prometheus
+    orgId: 1
+    folder: DeepSeek Harness
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 30
+    allowUiUpdates: true
+    options:
+      path: /var/lib/grafana/dashboards

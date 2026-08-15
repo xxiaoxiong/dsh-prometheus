@@ -1,0 +1,7 @@
+# Installed after the selected DSH base/profile layers. In `auto` endpoint
+# mode the plugin uses the public webServer route when one is already present,
+# otherwise it starts a loopback-only standalone listener.
+
+- insert:
+    - id: prometheus
+      name: 'dsh-prometheus'

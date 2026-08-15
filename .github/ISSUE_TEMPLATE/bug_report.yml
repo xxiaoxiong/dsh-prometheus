@@ -1,0 +1,35 @@
+name: Bug report
+description: Report a reproducible defect that is not a security vulnerability.
+title: "[bug] "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: Do not disclose secrets or security vulnerabilities here; follow SECURITY.md.
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: dsh-prometheus, DSH, Node, Prometheus, and Grafana versions.
+    validations:
+      required: true
+  - type: textarea
+    id: config
+    attributes:
+      label: Sanitized configuration
+      description: Remove credentials, paths, prompts, and customer identifiers.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Minimal steps and expected/actual behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Sanitized evidence
+      description: Logs or metric samples with sensitive data removed.

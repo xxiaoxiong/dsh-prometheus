@@ -1,0 +1,27 @@
+name: Feature request
+description: Propose a bounded operational metric or integration improvement.
+title: "[feature] "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Operational use case
+      description: What decision, alert, or diagnosis should this enable?
+    validations:
+      required: true
+  - type: textarea
+    id: seam
+    attributes:
+      label: Public DSH seam
+      description: Which public event or service provides the required fact?
+    validations:
+      required: true
+  - type: textarea
+    id: labels
+    attributes:
+      label: Privacy and cardinality
+      description: Proposed labels, their maximum vocabulary, and why they cannot contain sensitive data.
+    validations:
+      required: true
