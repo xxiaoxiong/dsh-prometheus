@@ -4,7 +4,7 @@ English | [中文](README.zh.md)
 
 Prometheus metrics and a ready-to-import Grafana dashboard for DeepSeek Harness. The plugin observes public DSH lifecycle seams, keeps metric series bounded, and avoids exporting conversation or tool payloads.
 
-> Release status: `0.1.0` is prepared and tested locally but has not been published to npm or a public GitHub repository.
+> Release status: `0.1.0` is the first developer-preview release, tested against DSH `0.1.0-rc.6`.
 
 ## What it monitors
 
@@ -32,19 +32,11 @@ DeepSeek Harness is a developer preview. Treat every DSH upgrade as a compatibil
 
 ## Install
 
-Until a package is published, build a tarball from this checkout:
-
-```sh
-pnpm install --frozen-lockfile
-pnpm pack
-dsh plugin --profile monitoring add ./dsh-prometheus-0.1.0.tgz
-dsh --profile monitoring --dump-config
-```
-
-After an authorized npm release, the install command becomes:
+Install the package into a DSH profile and verify its bundle layer:
 
 ```sh
 dsh plugin --profile monitoring add dsh-prometheus
+dsh --profile monitoring --dump-config
 ```
 
 The bundle inserts one row with id `prometheus`. Verify the dump includes the `dsh-prometheus` layer before booting the profile.

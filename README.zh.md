@@ -4,7 +4,7 @@
 
 面向 DeepSeek Harness 的 Prometheus 指标插件与可直接导入的 Grafana Dashboard。插件只观察 DSH 的公开生命周期扩展点，在导出前限制指标序列基数，并避免输出对话或工具载荷。
 
-> 发布状态：`0.1.0` 已在本地完成构建与测试，但尚未发布到 npm，也尚未创建公开 GitHub 仓库。
+> 发布状态：`0.1.0` 是首个 Developer Preview 版本，已针对 DSH `0.1.0-rc.6` 完成测试。
 
 ## 监控范围
 
@@ -32,19 +32,11 @@ DeepSeek Harness 当前仍是 Developer Preview。每次升级 DSH 都应视为�
 
 ## 安装
 
-在正式发布前，先从当前 checkout 构建 tarball：
-
-```sh
-pnpm install --frozen-lockfile
-pnpm pack
-dsh plugin --profile monitoring add ./dsh-prometheus-0.1.0.tgz
-dsh --profile monitoring --dump-config
-```
-
-获得授权并发布 npm 后，安装命令将变为：
+将 npm package 安装到 DSH profile，并检查 bundle layer：
 
 ```sh
 dsh plugin --profile monitoring add dsh-prometheus
+dsh --profile monitoring --dump-config
 ```
 
 Bundle 会插入 id 为 `prometheus` 的一行。启动 profile 前，请确认 dump 中出现 `dsh-prometheus` layer。

@@ -2,6 +2,15 @@
   "name": "dsh-prometheus",
   "version": "0.1.0",
   "description": "Privacy-conscious Prometheus metrics and a Grafana dashboard for DeepSeek Harness",
+  "homepage": "https://github.com/xxiaoxiong/dsh-prometheus#readme",
+  "bugs": {
+    "url": "https://github.com/xxiaoxiong/dsh-prometheus/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xxiaoxiong/dsh-prometheus.git"
+  },
+  "author": "xxiaoxiong",
   "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

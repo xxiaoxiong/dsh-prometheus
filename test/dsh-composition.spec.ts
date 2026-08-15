@@ -1,4 +1,5 @@
 import { createServer } from 'node:net'
+import { resolve } from 'node:path'
 import { Context, type Fiber } from '@deepseek-ai/cordis'
 import { AgentRegistry } from '@deepseek-ai/dsh-agent'
 import AgentLoop from '@deepseek-ai/dsh-agent-loop'
@@ -72,7 +73,7 @@ describe('real DSH rc.6 composition', () => {
         provider: 'fixture-provider',
         model: 'fixture-model',
       }, {
-        cwd: 'C:\\private\\workspace',
+        cwd: resolve('test/fixtures/private-workspace'),
       })
       agent.followup(createUserMessage({
         content: [{ type: 'text', text: PRIVATE_PROMPT }],

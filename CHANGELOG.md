@@ -4,6 +4,8 @@ All notable changes will be documented here. The format follows Keep a Changelog
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-08-15
+
 ### Added
 
 - Privacy-conscious metrics for sessions, agent turns/steps/errors, LLM calls and tokens, tools, approvals, subagents, and jobs.
@@ -11,7 +13,3 @@ All notable changes will be documented here. The format follows Keep a Changelog
 - Lifecycle-safe WebServer and standalone scrape adapters.
 - Prometheus rules, Docker Compose example, and provisioned Grafana dashboard.
 - Unit, endpoint, and real DSH rc.6 composition tests.
-
-## [0.1.0] - 2026-08-15
-
-- Release candidate prepared locally; not published.
