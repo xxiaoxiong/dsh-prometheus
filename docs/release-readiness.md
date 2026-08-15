@@ -2,7 +2,7 @@
 
 ## Recommendation
 
-**GO for a private/local `0.1.0` release candidate; HOLD public publication until the maintainer supplies a real private security contact and explicitly authorizes GitHub/npm publication.**
+**GO for the public `0.1.0` release once the final GitHub Actions run is green.** The maintainer authorized GitHub/npm publication on 2026-08-15 and GitHub Private Vulnerability Reporting is enabled.
 
 The ecosystem gate is GO: no mature, active, full Prometheus-native DSH plugin was found; the current public Session, Agent, LLM, Tool, Approval, Subagent, Job, Cordis lifecycle, and web-server seams are sufficient; and the implementation installs out of tree without modifying upstream. Full evidence is in [ecosystem-analysis.md](research/ecosystem-analysis.md).
 
@@ -12,7 +12,7 @@ The ecosystem gate is GO: no mature, active, full Prometheus-native DSH plugin w
 - Unit/integration/composition tested: 22 tests across six files on Windows with Node `24.18.0`; coverage thresholds are enforced.
 - E2E tested: an npm tarball was installed with the official DSH `0.1.0-rc.6` CLI into a disposable profile, composed, started, scraped directly and by Prometheus, then removed.
 - Manually verified: Prometheus `3.7.3` accepted the config and six alert rules and ingested a plugin metric; Grafana `12.3.1` provisioned one datasource and the overview dashboard.
-- Published: **No**. No npm package or public GitHub repository was created.
+- Public repository: [xxiaoxiong/dsh-prometheus](https://github.com/xxiaoxiong/dsh-prometheus). npm publication is performed after the final CI gate and verified separately.
 
 ## Compatibility and remaining unknowns
 
@@ -22,7 +22,7 @@ DSH is a Developer Preview. Public service/event shapes, bundle patch semantics,
 
 ## Security risk
 
-The endpoint intentionally has no authentication or TLS. It is loopback-only by default; remote binding requires `allowRemote: true`. Dynamic labels are length/character/vocabulary bounded and secret fixtures are asserted absent. Operators still need network controls and must regard aggregate operational metrics as sensitive. A real private vulnerability-reporting address is required before public release.
+The endpoint intentionally has no authentication or TLS. It is loopback-only by default; remote binding requires `allowRemote: true`. Dynamic labels are length/character/vocabulary bounded and secret fixtures are asserted absent. Operators still need network controls and must regard aggregate operational metrics as sensitive. Security reports use GitHub Private Vulnerability Reporting.
 
 ## Names and version
 
@@ -37,8 +37,6 @@ The endpoint intentionally has no authentication or TLS. It is loopback-only by 
 
 ## Publication blockers
 
-1. Replace the placeholder/private-contact guidance in `SECURITY.md` with a real maintainer-controlled channel.
-2. Run the configured Linux/Node 22 and Node 24 CI in the eventual repository.
-3. Re-run exact npm/GitHub name and competing-plugin searches.
-4. Produce provenance/SBOM as required by the chosen release process.
-5. Obtain explicit authorization before creating a public repository or running `npm publish`.
+1. Run the corrected Linux/Node 22 and Node 24 CI to green.
+2. Reconfirm the npm name immediately before `npm publish`.
+3. Publish from the exact tested commit, create tag `v0.1.0`, and verify a clean registry install.

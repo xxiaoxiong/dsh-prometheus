@@ -2,9 +2,9 @@
 
 ## Reporting a vulnerability
 
-Do not open a public issue for a vulnerability. Until a public repository and private reporting channel exist, share the report directly with the package maintainer through the distribution channel from which you received this source. Include affected version, reproduction, impact, and a suggested mitigation when possible.
+Do not open a public issue for a vulnerability. Use [GitHub Private Vulnerability Reporting](https://github.com/xxiaoxiong/dsh-prometheus/security/advisories/new). Include the affected version, reproduction, impact, and a suggested mitigation when possible. Do not include production credentials or session content.
 
-No public security contact is claimed in this release-preparation tree because no public repository has been created yet. Add a verified private-reporting address before publication.
+Private Vulnerability Reporting is enabled for the public repository and is the maintained private reporting channel for this project.
 
 ## Exposure model
 
